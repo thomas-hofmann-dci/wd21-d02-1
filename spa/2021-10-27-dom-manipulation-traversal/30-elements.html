@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TITEL</title>
+</head>
+<body>
+
+    <ol id="parent">
+        <li id="reference">Ein Listenelement</li>
+    </ol>
+
+    <div id="footer">FOOTER</div>
+
+<script>
+    // https://developer.mozilla.org/de/docs/Web/API/Document/createElement
+    var li = document.createElement("li");
+    var liText = document.createTextNode("li - created with createElement('li')");
+    // https://developer.mozilla.org/de/docs/Web/API/Document/createTextNode
+    li.appendChild(liText); // füge den Textknoten als Kind von 'li' hinzu
+
+    const parentNode = document.getElementById("parent")
+    const referenceNode = document.getElementById("reference");
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore
+    const insertedNode = parentNode.insertBefore(li, referenceNode);
+
+    console.log("insertedNode: ", insertedNode);
+    console.log("li: ", li);
+
+    var li2 = document.createElement("li");
+    var li2Text = document.createTextNode("li-Element das dem 'parent' als 'child' hinzugefügt wurde.");
+    li2.appendChild(li2Text); // füge den Textknoten als Kind von 'li' hinzu
+
+    // https://developer.mozilla.org/de/docs/Web/API/Node/appendChild
+    parentNode.appendChild(li2);
+
+    // https://developer.mozilla.org/de/docs/Web/API/Element/insertAdjacentHTML
+    parentNode.insertAdjacentHTML('beforebegin', '<h1>Inserted with .insertAdjacentHTML()</h1>');
+
+    var li3 = document.createElement("li");
+    var li3Text = document.createTextNode("li-Element das mittels insertAdjacentElement('afterbegin', ...) hinzugefügt wurde.");
+    li3.appendChild(li3Text); // füge den Textknoten als Kind von 'li' hinzu
+    // // https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement
+    parentNode.insertAdjacentElement('afterbegin', li3);
+
+    parentNode.insertAdjacentHTML('beforeend', '<li>insertAdjacentHTML("beforeend", ...)</li>')
+    parentNode.insertAdjacentHTML('afterend', '<h1>insertAdjacentHTML("afterend", ...)</h1>')
+
+    const footer = document.getElementById("footer");
+    footer.insertAdjacentText('beforeend', ' - insertAdjacentText("beforeend", ...)');
+
+    // insertAdjacentHTML()/insertAdjacentText() können bequemere Varianten 
+    // von insertAdjacentElement() sein, da sie "intern" einen Knoten erzeugen,
+    // und dies somit nicht selbst gemacht werden muss.
+
+</script>
+
+</body>
+</html>
