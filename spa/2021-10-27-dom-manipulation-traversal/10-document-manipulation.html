@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TITEL</title>
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+
+		h1 {
+			background-color: lightgrey;
+		}
+
+		div h1 {
+			color: red;
+		}
+
+		h1.mainHeadline {
+			font-style: italic;
+		}
+
+		#footer {
+			border-style: solid;
+			border-width: 1px;
+			border-color: grey;
+		}
+		.footer {
+			text-align: right;
+			font-size: smaller;
+			color: grey;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="content">
+		<h1 class="mainHeadline">Hauptüberschrift</h1>
+
+		<h1>2. Überschrift</h1>
+	</div>
+
+	<h1>3. Überschrift</h1>
+	<h1 class="mainHeadline">4. Überschrift</h1>
+
+	<p class="mainHeadline">Absatz</p>
+
+	<div id="footer" class="footer"></div>
+</body>
+
+<script>
+	const content = document.getElementById('content');
+	console.log('content: ', content);
+
+	const headline = document.querySelector('.mainHeadline');
+	console.log('querySelector(".mainHeadline): ', headline);
+	
+	const headlines = document.querySelectorAll('h1.mainHeadline');
+	console.log('Alle headlines mit Klasse "mainHeadline": ', headlines);
+
+	headline.style.color = 'green';
+
+	// ENG: https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+	// DEU: https://developer.mozilla.org/de/docs/Web/API/Node/textContent
+	headline.textContent = 'Headline in English';
+
+	const footer = document.getElementById('footer');
+	// https://developer.mozilla.org/de/docs/Web/API/HTMLElement/innerText
+	footer.innerText = 'FOOTER';
+
+	// hinzugefügte Zeichenketten werden immer als Text dargestellt:
+	footer.innerText = '<em>FOOTER</em>';
+	// soll HTML-Hinzugefügt werden, muss deshalb die Eigenschaft .innerHTML verwendet werden
+	// https://developer.mozilla.org/de/docs/Web/API/Element/innerHTML
+	footer.innerHTML = '<em>FOOTER</em>';
+
+	// Lesender Zugriff:
+	console.log("Text des Footers: ", footer.innerText);
+	// alert("Text des Footers: " + footer.innerText);
+
+	// https://developer.mozilla.org/de/docs/Web/API/Element/classList
+	const classList = footer.classList;
+	console.log("classList: ", classList);
+	classList.add("additionalClass");
+	console.log("classList: ", classList);
+	console.log("className: ", footer.className)
+	// classList.remove('footer');
+
+	if (classList.contains('footer')) {
+		console.log('contains "footer"');
+	} else {
+		console.log('does not contain "footer"');
+	}
+
+	
+</script>
+
+</html>

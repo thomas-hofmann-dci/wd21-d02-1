@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TITEL</title>
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+
+		h1 {
+			background-color: lightgrey;
+		}
+
+		div h1 {
+			color: red;
+		}
+
+		h1.mainHeadline {
+			font-style: italic;
+		}
+
+		#footer {
+			border-style: solid;
+			border-width: 1px;
+			border-color: grey;
+		}
+		.footer {
+			text-align: right;
+			font-size: smaller;
+			color: grey;
+		}
+	</style>
+	<script>
+		function onLoadHandler() {
+			//alert("load new content");
+			//document.open();
+			document.write("<h1>Raus mit dem Alten - rein mit dem Neuen!</h1>");
+			document.write("<p>Aufruf von document.write() nachdem das Dokument vom Browser geladen wurde.</p>")
+			document.close();
+		}
+	</script>
+
+</head>
+<!-- 
+<body onload="onLoadHandler();"> 
+-->
+<body>
+
+	<h1>Hallo, <span id="name"></span></h1>
+
+	<div id="content">
+		<h1 class="mainHeadline">Hauptüberschrift</h1>
+
+		<h1>2. Überschrift</h1>
+	</div>
+
+	<h1>3. Überschrift</h1>
+	<h1 class="mainHeadline">4. Überschrift</h1>
+
+	<p class="mainHeadline">Absatz</p>
+
+	
+	<script>
+		// https://developer.mozilla.org/de/docs/Web/API/Document/write
+		document.write('<code>document.write(...)</code>');
+		
+		const nameElement = document.getElementById("name");
+
+		// URL-Query String:
+		const query = window.location.search;
+		console.log('query: ', query);
+
+		// Javascript-Injections possible: ?name=<script>alert("injected JS");</script>
+		var searchParams = new URLSearchParams(query);
+		const name = searchParams.get('name');
+
+		// https://developer.mozilla.org/de/docs/Web/API/URLSearchParams
+		nameElement.innerText = name;
+		nameElement.innerHTML = name;
+		document.write("mittels write: " + name);
+	</script>
+
+	<div id="footer" class="footer">FOOTER</div>
+
+</body>
+
+</html>
